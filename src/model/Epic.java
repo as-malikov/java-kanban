@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Epic extends Task {
-    List<SubTask> subTasks = new ArrayList<>();
+    private List<SubTask> subTasks = new ArrayList<>();
 
     public Epic(String title, String description) {
-        super(title, null, description);
+        super(title, description);
     }
 
     public Epic(String title, Status status, String description) {
-        super(title, status, description);
+        super(title, description);
+        super.status = status;
     }
 
     public List<SubTask> getSubTasks() {
         return subTasks;
-    }
-
-    public void setSubTasks(List<SubTask> subTasks) {
-        this.subTasks = subTasks;
     }
 
     public void addTasks(SubTask subTask) {
@@ -35,5 +32,18 @@ public class Epic extends Task {
     }
 
     public void updateStatus() {
+        if (status == Status.DONE) {
+            status = Status.IN_PROGRESS;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "id=" + getId() +
+                ", title='" + getTitle() + '\'' +
+                ", status=" + status +
+                ", description='" + getDescription() + '\'' +
+                '}';
     }
 }

@@ -1,14 +1,16 @@
 package model;
 
-public class Task {
-    private String title;
-    public Status status;
-    private String description;
-    int id;
+import java.util.Objects;
 
-    public Task(String title,  Status status, String description) {
+public class Task {
+    private int id;
+    private String title;
+    protected Status status;
+    private String description;
+
+    public Task(String title, String description) {
         this.title = title;
-        this.status = status;
+        this.status = Status.NEW;
         this.description = description;
     }
 
@@ -49,5 +51,28 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o == null || getClass() != o.getClass())) return false;
+        Task task = (Task) o;
+        return id == task.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
