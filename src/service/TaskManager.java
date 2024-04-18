@@ -53,6 +53,7 @@ public class TaskManager {
         }
 
         saved.setTitle(epic.getTitle());
+        saved.setDescription(epic.getDescription());
         // ...
     }
 
@@ -90,4 +91,14 @@ public class TaskManager {
         epic.setStatus(Status.NEW);// TODO
     }
 
+    public Epic createEpic(Epic epic) {
+        return null;
+    }
+
+    public SubTask createSubTask(SubTask subTask) {
+        Epic epic = epics.get(subTask.getEpic().getId());
+        epic.addTasks((subTask));
+        epic.updateStatus();
+        return null;
+    }
 }

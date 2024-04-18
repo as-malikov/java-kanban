@@ -2,14 +2,21 @@ package model;
 
 public class Task {
     private String title;
-    private String description;
     public Status status;
+    private String description;
     int id;
 
-    public Task(String title, String description, Status status) {
+    public Task(String title,  Status status, String description) {
         this.title = title;
-        this.description = description;
         this.status = status;
+        this.description = description;
+    }
+
+    public Task(int id, String title, Status status, String description) {
+        this.id = id;
+        this.title = title;
+        this.status = status;
+        this.description = description;
     }
 
     public String getTitle() {
