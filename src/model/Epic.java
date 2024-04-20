@@ -15,26 +15,21 @@ public class Epic extends Task {
         super.status = status;
     }
 
+    public Epic(int id, String title, String description, List<SubTask> subTasks) {
+        super(id, title, description);
+        this.subTasks = subTasks;
+    }
+
     public List<SubTask> getSubTasks() {
         return subTasks;
     }
 
     public void addTasks(SubTask subTask) {
-
+        subTasks.add(subTask);
     }
 
     public void removeTask(SubTask subTask) {
-
-    }
-
-    public void updateTasks(SubTask subTask) {
-        status = Status.NEW;
-    }
-
-    public void updateStatus() {
-        if (status == Status.DONE) {
-            status = Status.IN_PROGRESS;
-        }
+        subTasks.remove(subTask);
     }
 
     @Override

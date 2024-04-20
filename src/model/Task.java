@@ -14,6 +14,12 @@ public class Task {
         this.description = description;
     }
 
+    public Task(int id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     public Task(int id, String title, Status status, String description) {
         this.id = id;
         this.title = title;
