@@ -12,6 +12,7 @@ public class Main {
         TaskManager taskManager = new TaskManager();
 
         // Test 1. Creating objects Task, Epic, SubTask
+        System.out.println(">>> Test 1. Creating objects Task, Epic, SubTask");
         Task task1 = taskManager.create(new Task("Новая задача 1", "описание задачи 1"));
         System.out.println("Create task 1: " + task1);
 
@@ -38,6 +39,7 @@ public class Main {
         System.out.println();
 
         // Test 2. Get full list Task, Epic, SubTask
+        System.out.println(">>> Test 2. Get full list Task, Epic, SubTask");
         System.out.println("Список всех задач:");
         printAllTasks(taskManager.getAll());
         System.out.println("Список всех эпиков:");
@@ -47,6 +49,7 @@ public class Main {
         System.out.println();
 
         // Test 3. Update Task, Epic, SubTask
+        System.out.println(">>> Test 3. Update Task, Epic, SubTask");
         Task taskUpdate = new Task(task2.getId(), "Обновленная задача 2", Status.IN_PROGRESS, "Обновленное описание задачи 2");
         taskManager.update(taskUpdate);
         System.out.println("Update task2: " + taskUpdate);
@@ -78,12 +81,14 @@ public class Main {
 
 
         // Test 4. Get by id Task, Epic, SubTask
+        System.out.println(">>> Test 4. Get by id Task, Epic, SubTask");
         System.out.println("Get task by id: " + taskManager.get(1));
         System.out.println("Get epic by id: " + taskManager.getEpic(3));
         System.out.println("Get subTask by id: " + taskManager.getSubTask(5));
         System.out.println();
 
-        // Test 5. Delete by id Task, Epic, SubTask
+        // Test 5 and 6. Delete by id Task, Epic, SubTask
+        System.out.println(">>> Test 5 and 6. Delete by id and Get full list Task, Epic, SubTask");
         taskManager.deleteById(1);
         taskManager.deleteEpicById(2);
         taskManager.deleteSubTaskById(5);
@@ -97,16 +102,24 @@ public class Main {
         printAllSubTasks(taskManager.getAllSubTasks());
         System.out.println();
 
-        // Test 7. Deleting all Task, Epic, SubTask
+        // Test 7. Deleting all Task, SubTask
+        System.out.println(">>> Test 7. Deleting all Task, SubTask");
         taskManager.deleteAll();
-        taskManager.deleteAllEpics();
+        taskManager.deleteAllSubTasks();
 
         System.out.println("Список всех задач, после удаления всех задач:");
         printAllTasks(taskManager.getAll());
-        System.out.println("Список всех эпиков, после удаления всех эпиков:");
+        System.out.println("Список всех эпиков, после удаления всех подзадач:");
         printAllEpics(taskManager.getAllEpics());
         System.out.println("Список всех подзадач, после удаления всех подзадач:");
         printAllSubTasks(taskManager.getAllSubTasks());
+        System.out.println();
+
+        // Test 8. Deleting all Epic
+        System.out.println(">>> Test 8. Deleting all Epic");
+        taskManager.deleteAllEpics();
+        System.out.println("Список всех эпиков, после удаления всех эпиков:");
+        printAllEpics(taskManager.getAllEpics());
     }
 
     static void printAllTasks(List<Task> tasks) {
