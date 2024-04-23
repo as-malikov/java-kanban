@@ -84,7 +84,7 @@ public class Main {
         System.out.println("Get task by id: " + taskManager.get(1));
         System.out.println("Get epic by id: " + taskManager.getEpic(3));
         System.out.println("Get subTask by id: " + taskManager.getSubTask(5));
-        System.out.println("Get SubTasks by ID: " + taskManager.getSubTasksById(epic1));
+        System.out.println("Get SubTasks by ID: " + taskManager.getSubTasksById(2));
         System.out.println();
 
         // Test 5 and 6. Delete by id Task, Epic, SubTask

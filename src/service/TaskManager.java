@@ -62,8 +62,8 @@ public class TaskManager {
         return subTasks.get(id);
     }
 
-    public ArrayList<SubTask> getSubTasksById(Epic epic) {
-        return new ArrayList<SubTask>(epic.getSubTasks());
+    public ArrayList<SubTask> getSubTasksById(int id) {
+        return new ArrayList<SubTask>(epics.get(id).getSubTasks());
     }
 
     // Update Task, Epic, SubTask
