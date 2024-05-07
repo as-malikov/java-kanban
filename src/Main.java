@@ -2,6 +2,8 @@ import model.Epic;
 import model.Status;
 import model.SubTask;
 import model.Task;
+import service.InMemoryHistoryManager;
+import service.InMemoryTaskManager;
 import service.TaskManager;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
 
         // Test 1. Creating objects Task, Epic, SubTask
         System.out.println(">>> Test 1. Creating objects Task, Epic, SubTask");
