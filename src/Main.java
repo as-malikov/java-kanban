@@ -14,33 +14,23 @@ public class Main {
         TaskManager taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
 
         // Test 1. Creating objects Task, Epic, SubTask
-        System.out.println(">>> Test 1. Creating objects Task, Epic, SubTask");
         Task task1 = taskManager.create(new Task("Новая задача 1", "описание задачи 1"));
-        System.out.println("Create task 1: " + task1);
-
         Task task2 = taskManager.create(new Task("Новая задача 2", "описание задачи 2"));
-        System.out.println("Create task 2: " + task2);
 
         Epic epic1 = taskManager.createEpic(new Epic("Новый эпик 1", "описание эпика 1"));
-        System.out.println("Create epic 1: " + epic1);
-
         Epic epic2 = taskManager.createEpic(new Epic("Новый эпик 2", Status.NEW, "описание эпика 2"));
-        System.out.println("Create epic 2: " + epic2);
 
         SubTask subTask1 = taskManager.createSubTask(new SubTask("Новая подзадача 1", Status.NEW, "описание подзадачи 1", epic1));
-        System.out.println("Create subTask 1: " + subTask1);
-
         SubTask subTask2 = taskManager.createSubTask(new SubTask("Новая подзадача 2", Status.NEW, "описание подзадачи 2", epic2));
-        System.out.println("Create subTask 2: " + subTask2);
-
         SubTask subTask3 = taskManager.createSubTask(new SubTask("Новая подзадача 3", Status.NEW, "описание подзадачи 3", epic1));
-        System.out.println("Create subTask 3: " + subTask3);
-
         SubTask subTask4 = taskManager.createSubTask(new SubTask("Новая подзадача 4", Status.NEW, "описание подзадачи 4", epic2));
-        System.out.println("Create subTask 4: " + subTask4);
-        System.out.println();
+        SubTask subTask5 = taskManager.createSubTask(new SubTask("Новая подзадача 5", Status.NEW, "описание подзадачи 5", epic2));
+        SubTask subTask6 = taskManager.createSubTask(new SubTask("Новая подзадача 6", Status.NEW, "описание подзадачи 6", epic2));
+        SubTask subTask7 = taskManager.createSubTask(new SubTask("Новая подзадача 7", Status.NEW, "описание подзадачи 7", epic2));
+        SubTask subTask8 = taskManager.createSubTask(new SubTask("Новая подзадача 8", Status.NEW, "описание подзадачи 8", epic2));
 
-        // Test 2. Get full list Task, Epic, SubTask
+
+       /* // Test 2. Get full list Task, Epic, SubTask
         System.out.println(">>> Test 2. Get full list Task, Epic, SubTask");
         System.out.println("Список всех задач:");
         printAllTasks(taskManager.getAll());
@@ -121,25 +111,63 @@ public class Main {
         System.out.println(">>> Test 8. Deleting all Epic");
         taskManager.deleteAllEpics();
         System.out.println("Список всех эпиков, после удаления всех эпиков:");
-        printAllEpics(taskManager.getAllEpics());
+        printAllEpics(taskManager.getAllEpics());*/
+
+        taskManager.get(0);
+        taskManager.get(1);
+
+        taskManager.getEpic(2);
+        taskManager.getEpic(3);
+
+        taskManager.getSubTask(4);
+        taskManager.getSubTask(5);
+        taskManager.getSubTask(6);
+        taskManager.getSubTask(7);
+        taskManager.getSubTask(9);
+        taskManager.getSubTask(10);
+        taskManager.getSubTask(11);
+
+        taskManager.get(0);
+        taskManager.get(1);
+
+        taskManager.getEpic(2);
+        taskManager.getEpic(3);
+
+        printAllTasks(taskManager);
     }
 
-    static void printAllTasks(List<Task> tasks) {
-        for (Object task : tasks) {
+    private static void printAllTasks(TaskManager taskManager) {
+        System.out.println("1) Задачи:");
+        printAllTasks(taskManager.getAll());
+        System.out.println("2) Эпики:");
+        printAllEpics(taskManager.getAllEpics());
+        System.out.println("3) Подзадачи:");
+        printAllSubTasks(taskManager.getAllSubTasks());
+        System.out.println("4) История:");
+        printHistory(taskManager.getHistory());
+    }
+
+        static void printAllTasks(List<Task> tasks) {
+        for (Task task : tasks) {
             System.out.println(task);
         }
     }
 
     static void printAllEpics(List<Epic> epics) {
-        for (Object epic : epics) {
+        for (Epic epic : epics) {
             System.out.println(epic);
         }
     }
 
     static void printAllSubTasks(List<SubTask> subTasks) {
-        for (Object subTask : subTasks) {
+        for (SubTask subTask : subTasks) {
             System.out.println(subTask);
         }
     }
 
+    static void printHistory(List<Task> historys) {
+        for (Task history : historys) {
+            System.out.println("- " + history);
+        }
+    }
 }
