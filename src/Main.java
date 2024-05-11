@@ -165,8 +165,8 @@ public class Main {
         }
     }
 
-    static void printHistory(List<Task> historys) {
-        for (Task history : historys) {
+    static void printHistory(List<Task> histories) {
+        for (Task history : histories) {
             System.out.println("- " + history);
         }
     }

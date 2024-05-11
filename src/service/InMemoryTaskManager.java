@@ -93,6 +93,7 @@ public class InMemoryTaskManager implements TaskManager {
             return;
         }
         saved.setTitle(epic.getTitle());
+        saved.setStatus(epic.getStatus());
         saved.setDescription(epic.getDescription());
     }
 
