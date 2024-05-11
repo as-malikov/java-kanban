@@ -113,6 +113,7 @@ public class Main {
         System.out.println("Список всех эпиков, после удаления всех эпиков:");
         printAllEpics(taskManager.getAllEpics());*/
 
+        // Checking get History
         taskManager.get(0);
         taskManager.get(1);
 
