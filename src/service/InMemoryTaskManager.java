@@ -56,8 +56,9 @@ public class InMemoryTaskManager implements TaskManager {
     // Get Task, Epic, SubTask and SubTasks by id
     @Override
     public Task get(int id) {
-        historyManager.add(tasks.get(id));
-        return tasks.get(id);
+        Task currentTask = tasks.get(id);
+        historyManager.add(currentTask);
+        return currentTask;
     }
 
     @Override

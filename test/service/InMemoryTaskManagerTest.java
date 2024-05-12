@@ -14,18 +14,27 @@ import java.util.List;
 
 public class InMemoryTaskManagerTest {
     InMemoryTaskManager memoryTaskManager;
-    HistoryManager historyManager;
     private Epic epic;
 
     // Checking create - Task, Epic, SubTask
     @BeforeEach
     @DisplayName("Задача, эпик и подзадача должны быть созданы")
     void init() {
-        historyManager = new InMemoryHistoryManager();
-        memoryTaskManager = new InMemoryTaskManager(historyManager);
+        memoryTaskManager = new InMemoryTaskManager(Managers.getDefaultHistory());
         memoryTaskManager.create(new Task("new task", "desc")); // id = 0
         epic = memoryTaskManager.createEpic(new Epic("new epic", "desc")); // id = 1
         memoryTaskManager.createSubTask(new SubTask("new subTask", "desc", epic)); // id = 2
+    }
+
+    // Checking Managers
+    @Test
+    @DisplayName("Менеджеры должны совподать")
+    void taskManagers() {
+        InMemoryTaskManager inMemoryTaskManager = new InMemoryTaskManager(Managers.getDefaultHistory());
+        inMemoryTaskManager.create(new Task("new task", "desc")); // id = 0
+        Epic epic2 = inMemoryTaskManager.createEpic(new Epic("new epic", "desc")); // id = 1
+        inMemoryTaskManager.createSubTask(new SubTask("new subTask", "desc", epic2)); // id = 2
+        assertEqualsTaskManager(inMemoryTaskManager, memoryTaskManager, "Менеджеры должны совподать");
     }
 
     // Checking get by Id and create - Task, Epic, SubTask
@@ -192,12 +201,20 @@ public class InMemoryTaskManagerTest {
         }
         int countHistoryExpected = memoryTaskManager.getHistory().size();
         int countActual = 10;
-        assertEquals(countHistoryExpected, countActual, "Должен получить список последних просмотренных 10 задач, эпиков, подзадач");
+        assertEquals(countHistoryExpected, countActual, "Должен получить список последних просмотренных " +
+                "10 задач, эпиков, подзадач");
     }
 
     private static void assertEqualsTask(Task expected, Task actual, String message) {
         assertEquals(expected.getTitle(), actual.getTitle(), ", title");
         assertEquals(expected.getStatus(), actual.getStatus(), ", status");
         assertEquals(expected.getDescription(), actual.getDescription(), ", description");
+    }
+
+    private static void assertEqualsTaskManager(InMemoryTaskManager expected, InMemoryTaskManager actual,
+                                                        String message) {
+        assertEquals(expected.getAll().toString(), actual.getAll().toString(), message + ", tasks;");
+        assertEquals(expected.getAllEpics().toString(), actual.getAllEpics().toString(), message + ", epics;");
+        assertEquals(expected.getAllSubTasks().toString(), actual.getAllSubTasks().toString(), message + ", subTasks;");
     }
 }
