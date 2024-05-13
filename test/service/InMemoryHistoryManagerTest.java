@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InMemoryHistoryManagerTest {
     HistoryManager historyManager;
-    InMemoryTaskManager memoryTaskManager;
     Task task;
     Epic epic;
     SubTask subTask;
@@ -19,7 +18,7 @@ public class InMemoryHistoryManagerTest {
     @BeforeEach
     void init() {
         historyManager = new InMemoryHistoryManager();
-        memoryTaskManager = new InMemoryTaskManager(historyManager);
+        InMemoryTaskManager memoryTaskManager = new InMemoryTaskManager(historyManager);
         task = new Task("new task", "desc");
         epic = memoryTaskManager.createEpic(new Epic("new epic", "desc"));
         subTask = (new SubTask("new subTask", "desc", epic));
